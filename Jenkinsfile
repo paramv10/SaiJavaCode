@@ -3,7 +3,7 @@
 		agent any
 		environment {
 			// Install the Maven version configured as "maven3.8" and add it to the path.
-			// tool { maven "maven3"
+			// tools { maven "maven3"}
 			// another way of using maven given below.
 			
 			PATH="/opt/maven3/bin:$PATH"
