@@ -1,22 +1,26 @@
 	pipeline {
+	
 		// agent { node "Slave1" } or agent any 
+
 		agent any
-		environment {
+
+		tool { maven "maven3" }
+		// environment {
 			// Install the Maven version configured as "maven3.8" and add it to the path.
-			// tool { maven "maven3"
+			// 
 			// another way of using maven given below.
 			
-			PATH="/opt/maven3/bin:$PATH"
-		}
+			// PATH="/opt/maven3/bin:$PATH"
+		//}
 
 		stages {
-			stage('CheckOut Code') {
+			stage('CheckOut') {
 				steps {
 					// Get some code from a GitHub repository
 					git credentialsId: '70860dd4-6c55-45b4-a377-6107adaa15a7', url: 'git@github.com:paramv10/SaiJavaCode.git'
 				}
 			}
-			stage('Build Code') {
+			stage('Build') {
 				steps {
 					// Run Maven on a Unix agent.
 					sh "mvn -Dmaven.test.failure.ignore=true clean package"
