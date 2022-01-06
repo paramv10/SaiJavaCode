@@ -1,13 +1,17 @@
 	pipeline {
+	
 		// agent { node "Slave1" } or agent any 
+
 		agent any
-		environment {
+
+		tool { maven "maven3" }
+		// environment {
 			// Install the Maven version configured as "maven3.8" and add it to the path.
-			// tool { maven "maven3"
+			// 
 			// another way of using maven given below.
 			
-			PATH="/opt/maven3/bin:$PATH"
-		}
+			// PATH="/opt/maven3/bin:$PATH"
+		//}
 
 		stages {
 			stage('CheckOut') {
@@ -32,5 +36,11 @@
 					}
 				}
 			}
+			stage("Slack-Notify"){
+                steps{ 
+                    echo "Build successfully"
+                    slackSend channel: 'jenkins', color: '#439FE0', message: 'Initial Build Successful'
+                }
+            }
 		}
 	}
