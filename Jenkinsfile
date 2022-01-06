@@ -10,13 +10,13 @@
 		}
 
 		stages {
-			stage('CheckOut') {
+			stage('CheckOut Code') {
 				steps {
 					// Get some code from a GitHub repository
 					git credentialsId: '70860dd4-6c55-45b4-a377-6107adaa15a7', url: 'git@github.com:paramv10/SaiJavaCode.git'
 				}
 			}
-			stage('Build') {
+			stage('Build Code') {
 				steps {
 					// Run Maven on a Unix agent.
 					sh "mvn -Dmaven.test.failure.ignore=true clean package"
